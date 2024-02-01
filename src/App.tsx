@@ -3,10 +3,12 @@ import styles from "./components/Site.module.css";
 import { PageOne } from "./components/pages/PageOne";
 import { PageTwo } from "./components/pages/PageTwo";
 import { PageThree } from "./components/pages/PageThree";
-import { NavLink, Navigate, Route, Routes } from "react-router-dom";
+import { Link, NavLink, Navigate, Route, Routes } from "react-router-dom";
 import { Error404 } from "./components/pages/Error404";
 
 function App() {
+    
+
     return (
         <div>
             <div className={styles.header}>
@@ -14,10 +16,36 @@ function App() {
             </div>
             <div className={styles.body}>
                 <div className={styles.nav}>
-                    <div><NavLink to={"/page1"}>Page1</NavLink></div>
-                    <div><NavLink to={"/page2"}>Page2</NavLink></div>
-                    <div><NavLink to={"/page3"}>Page3</NavLink></div>
-                    Здесь будет навигация
+                    <div>
+                        <NavLink
+                            to="/page1"
+                            className={({ isActive }) =>
+                                isActive ? styles.active : styles.navLink
+                            }
+                        >
+                            Page1
+                        </NavLink>
+                    </div>
+                    <div>
+                        <NavLink
+                            to={"/page2"}
+                            className={({ isActive }) =>
+                                isActive ? styles.active : styles.navLink
+                            }
+                        >
+                            Page2
+                        </NavLink>
+                    </div>
+                    <div>
+                        <NavLink
+                            to={"/page3"}
+                            className={({ isActive }) =>
+                                isActive ? styles.active : styles.navLink
+                            }
+                        >
+                            Page3
+                        </NavLink>
+                    </div>
                 </div>
                 <div className={styles.content}>
                     <Routes>
