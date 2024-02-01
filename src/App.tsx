@@ -3,69 +3,57 @@ import styles from "./components/Site.module.css";
 import { PageOne } from "./components/pages/PageOne";
 import { PageTwo } from "./components/pages/PageTwo";
 import { PageThree } from "./components/pages/PageThree";
-import { Link, NavLink, Navigate, Route, Routes } from "react-router-dom";
+import { NavLink, Navigate, Route, Routes } from "react-router-dom";
 import { Error404 } from "./components/pages/Error404";
+import styled from "styled-components";
+import { Body, Content, Footer, Header, Nav, NavWrapper } from "./components/pages/_styles";
+
+const PATH ={
+    PAGE1:"/page1",
+    PAGE2:"/page2",
+    PAGE3:"/page3",
+    ERROR:"/page/error"
+} as const
+
 
 function App() {
-    
-
     return (
         <div>
-            <div className={styles.header}>
+            <Header >
                 <h1>HEADER</h1>
-            </div>
-            <div className={styles.body}>
-                <div className={styles.nav}>
-                    <div>
-                        <NavLink
-                            to="/page1"
-                            className={({ isActive }) =>
-                                isActive ? styles.active : styles.navLink
-                            }
-                        >
-                            Page1
-                        </NavLink>
-                    </div>
-                    <div>
-                        <NavLink
-                            to={"/page2"}
-                            className={({ isActive }) =>
-                                isActive ? styles.active : styles.navLink
-                            }
-                        >
-                            Page2
-                        </NavLink>
-                    </div>
-                    <div>
-                        <NavLink
-                            to={"/page3"}
-                            className={({ isActive }) =>
-                                isActive ? styles.active : styles.navLink
-                            }
-                        >
-                            Page3
-                        </NavLink>
-                    </div>
-                </div>
-                <div className={styles.content}>
+            </Header>
+            <Body>
+                <Nav>
+                    <NavWrapper>
+                        <NavLink to={PATH.PAGE1}>Page1</NavLink>
+                    </NavWrapper>
+                    <NavWrapper>
+                        <NavLink to={PATH.PAGE2}>Page2</NavLink>
+                    </NavWrapper>
+                    <NavWrapper>
+                        <NavLink to={PATH.PAGE3}>Page3</NavLink>
+                    </NavWrapper>
+                </Nav>
+                <Content >
                     <Routes>
                         <Route path="/" element={<Navigate to={"/page1"} />} />
 
-                        <Route path="/page1" element={<PageOne />} />
-                        <Route path="/page2" element={<PageTwo />} />
-                        <Route path="/page3" element={<PageThree />} />
+                        <Route path={PATH.PAGE1} element={<PageOne />} />
+                        <Route path={PATH.PAGE2} element={<PageTwo />} />
+                        <Route path={PATH.PAGE3} element={<PageThree />} />
 
-                        <Route path="/page/error" element={<Error404 />} />
-                        <Route
-                            path="/*"
-                            element={<Navigate to={"/page/error"} />}
-                        />
+                        <Route path='/*' element={<Error404 />}/>
+                        {/* <Route path={PATH.ERROR} element={<Error404 />} />
+                        <Route path="/*" element={<Navigate to={PATH.ERROR} />} /> */}
                     </Routes>
-                </div>
-            </div>
-            <div className={styles.footer}>abibas 2023</div>
+                </Content>
+            </Body>
+            <Footer >abibas 2023</Footer>
         </div>
     );
 }
 
+
+
 export default App;
+
